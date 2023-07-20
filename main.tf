@@ -56,7 +56,7 @@ module "main_lambda" {
 
   source_path = [
     {
-      path = "${path.module}/../../",
+      path = "${path.module}/../../../",
       patterns = [
         "!.*/*",
         "src/.+",
