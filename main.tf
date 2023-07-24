@@ -6,7 +6,7 @@ resource "aws_api_gateway_method" "main" {
   authorization        = var.authorization
   api_key_required     = var.api_key_required
   request_parameters   = var.request_parameters
-  request_validator_id = aws_api_gateway_request_validator.main.id
+  request_validator_id = aws_api_gateway_request_validator.main[0].id
 }
 
 resource "aws_api_gateway_method_settings" "main" {
