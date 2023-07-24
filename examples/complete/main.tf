@@ -16,8 +16,8 @@ variable "python_sentry_layer" {
 # ---------------------------------------------------
 
 external_vars = {
-  "DEPLOY_ENV"       = "uat",
-  "REGION"           = "ap-southeast-2",
+  "DEPLOY_ENV" = "uat",
+  "REGION"     = "ap-southeast-2",
 }
 
 # Declare tags to be applied to every resource

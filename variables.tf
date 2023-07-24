@@ -160,6 +160,18 @@ variable "throttling_rate_limit" {
   description = "Specifies the throttling rate limit"
 }
 
+variable "request_parameters" {
+  default     = {}
+  type        = map(any)
+  description = "Map of request parameters (from the path, query string and headers) that should be passed to the integration"
+}
+
+variable "api_key_required" {
+  type        = bool
+  default     = false
+  description = "Specify if the method requires an API key"
+}
+
 variable "unauthorized_cache_control_header_strategy" {
   type        = string
   default     = "SUCCEED_WITH_RESPONSE_HEADER"

@@ -1,15 +1,18 @@
 
 resource "aws_api_gateway_method" "main" {
-  rest_api_id   = data.aws_api_gateway_rest_api.main.id
-  resource_id   = data.aws_api_gateway_resource.main.id
-  http_method   = var.http_method
-  authorization = var.authorization
+  rest_api_id        = data.aws_api_gateway_rest_api.main.id
+  resource_id        = data.aws_api_gateway_resource.main.id
+  http_method        = var.http_method
+  authorization      = var.authorization
+  api_key_required   = var.api_key_required
+  request_parameters = var.request_parameters
 }
 
 resource "aws_api_gateway_method_settings" "main" {
   rest_api_id = data.aws_api_gateway_rest_api.main.id
   stage_name  = var.environment
   method_path = "${trimprefix(data.aws_api_gateway_resource.main.path, "/")}/${aws_api_gateway_method.main.http_method}"
+
 
   settings {
     cache_data_encrypted                       = var.cache_data_encrypted
@@ -23,6 +26,7 @@ resource "aws_api_gateway_method_settings" "main" {
     throttling_rate_limit                      = var.throttling_rate_limit
     unauthorized_cache_control_header_strategy = var.unauthorized_cache_control_header_strategy
   }
+
 }
 
 resource "aws_api_gateway_integration" "main" {
