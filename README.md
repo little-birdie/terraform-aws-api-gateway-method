@@ -5,6 +5,9 @@
 </div>
 
 
+Terraform registry: [https://registry.terraform.io/modules/little-birdie/api-gateway-method/aws/latest](https://registry.terraform.io/modules/little-birdie/api-gateway-method/aws/latest)
+
+Little Birdie's internal terraform module which creates an API Gateway method to an already existent API gateway
 
 ## Provision Instructions
 
@@ -14,10 +17,6 @@ module "api-gateway-method" {
   version = "0.0.3"
 }
 ```
-
-Terraform registry: [https://registry.terraform.io/modules/little-birdie/api-gateway-method/aws/latest](https://registry.terraform.io/modules/little-birdie/api-gateway-method/aws/latest)
-
-Little Birdie's internal terraform module which creates an API Gateway method to an already existent API gateway
 
 ## Complete example
 
