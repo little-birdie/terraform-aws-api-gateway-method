@@ -1,11 +1,12 @@
 
 resource "aws_api_gateway_method" "main" {
-  rest_api_id        = data.aws_api_gateway_rest_api.main.id
-  resource_id        = data.aws_api_gateway_resource.main.id
-  http_method        = var.http_method
-  authorization      = var.authorization
-  api_key_required   = var.api_key_required
-  request_parameters = var.request_parameters
+  rest_api_id          = data.aws_api_gateway_rest_api.main.id
+  resource_id          = data.aws_api_gateway_resource.main.id
+  http_method          = var.http_method
+  authorization        = var.authorization
+  api_key_required     = var.api_key_required
+  request_parameters   = var.request_parameters
+  request_validator_id = aws_api_gateway_request_validator.main.id
 }
 
 resource "aws_api_gateway_method_settings" "main" {
@@ -36,6 +37,13 @@ resource "aws_api_gateway_integration" "main" {
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
   uri                     = module.main_lambda.lambda_function_invoke_arn
+}
+
+resource "aws_api_gateway_request_validator" "main" {
+  name                        = "${var.environment}-${var.service_name}-${aws_api_gateway_method.main.http_method}"
+  rest_api_id                 = data.aws_api_gateway_rest_api.main.id
+  validate_request_body       = true
+  validate_request_parameters = true
 }
 
 resource "aws_lambda_permission" "main_lambda" {

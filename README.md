@@ -14,7 +14,7 @@ Little Birdie's internal terraform module which creates an API Gateway method to
 ```hcl
 module "api-gateway-method" {
   source  = "little-birdie/api-gateway-method/aws"
-  version = "0.0.5"
+  version = "0.0.7"
 }
 ```
 
@@ -80,5 +80,11 @@ module "test_events" {
   external_vars = var.external_vars
   environment   = var.environment
   common_tags   = local.common_tags
+
+  request_parameters = {
+    "method.request.path.proxy" = true
+    "method.request.header.X-Some-Header" = true
+    "method.request.querystring.my_id" = true
+  }
 }
 ```
