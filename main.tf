@@ -40,6 +40,7 @@ resource "aws_api_gateway_integration" "main" {
 }
 
 resource "aws_api_gateway_request_validator" "main" {
+  count                       = length(var.request_parameters) > 0 ? 1 : 0
   name                        = "${var.environment}-${var.service_name}-${var.http_method}"
   rest_api_id                 = data.aws_api_gateway_rest_api.main.id
   validate_request_body       = true
