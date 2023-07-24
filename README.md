@@ -6,5 +6,7 @@
 
 
 
-# Little Birdie `terraform-aws-api-gateway-method`
-Internal terraform module which creaates API Gateway methods to an already existent API gateway
+# `terraform-aws-api-gateway-method`
+
+Terraform registry: [https://registry.terraform.io/modules/little-birdie/api-gateway-method/aws/latest](https://registry.terraform.io/modules/little-birdie/api-gateway-method/aws/latest)
+Internal terraform module which creates an API Gateway method to an already existent API gateway
