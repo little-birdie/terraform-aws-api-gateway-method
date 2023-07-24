@@ -48,7 +48,7 @@ resource "aws_lambda_permission" "main_lambda" {
 
 module "main_lambda" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = var.lambda_module_version
+  version = "5.3.0"
 
   function_name = "${var.environment}-${var.service_name}"
   description   = var.description
