@@ -38,6 +38,13 @@ resource "aws_api_gateway_integration" "main" {
   uri                     = module.main_lambda.lambda_function_invoke_arn
 }
 
+resource "aws_api_gateway_request_validator" "main" {
+  name                        = "${var.environment}-request-validator"
+  rest_api_id                 = data.aws_api_gateway_rest_api.main.id
+  validate_request_body       = true
+  validate_request_parameters = true
+}
+
 resource "aws_lambda_permission" "main_lambda" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
