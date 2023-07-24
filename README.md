@@ -14,7 +14,7 @@ Little Birdie's internal terraform module which creates an API Gateway method to
 ```hcl
 module "api-gateway-method" {
   source  = "little-birdie/api-gateway-method/aws"
-  version = "0.0.9"
+  version = "0.0.10"
 }
 ```
 
