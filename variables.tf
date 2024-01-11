@@ -106,6 +106,12 @@ variable "layers" {
   description = "Lambda layers"
 }
 
+variable "source_path" {
+  type        = any
+  default     = []
+  description = "Lambda layers"
+}
+
 variable "cache_data_encrypted" {
   type        = bool
   default     = false
