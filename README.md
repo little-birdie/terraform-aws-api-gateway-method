@@ -68,7 +68,8 @@ module "test_events" {
   service_name  = "test-events"
   description   = "This is the /test_events"
 
-  # The resource id below is not created by this module, you'll need to use something similar to: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_resource
+  # The resource id below is not created by this module, you'll need to use something similar to:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_resource
   resource_id   = "/api/test_events"
 
   http_method   = "GET"
