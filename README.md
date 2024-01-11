@@ -74,7 +74,7 @@ module "test_events" {
 
   http_method   = "GET"
   authorization = "NONE"
-  handler       = "src/test_event.handler"
+  handler       = "get_test_event.handler"
   runtime       = "python3.9"
   timeout       = 30
   memory_size   = 256
