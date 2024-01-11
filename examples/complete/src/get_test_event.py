@@ -27,3 +27,6 @@ def handler(event: dict, context: LambdaContext) -> str:
         "statusCode": 200,
         "body": json.dumps(event, indent=4)
     }
+
+
+#

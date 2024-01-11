@@ -19,7 +19,9 @@ deploy: apply
 		--stage-name uat \
 		--stage-description 'Stage uat' \
 		--description 'Deployment to the uat stage' \
-		--region $(AWS_REGION)
+		--region $(AWS_REGION) \
+		--output json \
+		--no-cli-pager
 
 destroy: prepare
 	@echo "Destroys the terraform module"
