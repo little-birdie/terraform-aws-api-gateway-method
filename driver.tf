@@ -1,6 +1,5 @@
 data "aws_api_gateway_rest_api" "main" {
-
-  name = "${var.environment}-${var.service}"
+  name = var.aws_api_gateway_rest_api_name == null ? "${var.environment}-${var.service}" : var.aws_api_gateway_rest_api_name
 }
 
 data "aws_api_gateway_resource" "main" {

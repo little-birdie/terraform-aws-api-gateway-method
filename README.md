@@ -14,7 +14,7 @@ Little Birdie's internal terraform module which creates an API Gateway method to
 ```hcl
 module "api-gateway-method" {
   source  = "little-birdie/api-gateway-method/aws"
-  version = "0.0.13"
+  version = "0.0.14"
 }
 ```
 
@@ -27,11 +27,6 @@ module "api-gateway-method" {
 variable "python_aws_powertools" {
   type    = string
   default = "arn:aws:lambda:ap-southeast-2:017000801446:layer:AWSLambdaPowertoolsPythonV2:18"
-}
-
-variable "python_sentry_layer" {
-  type    = string
-  default = "arn:aws:lambda:ap-southeast-2:943013980633:layer:SentryPythonServerlessSDK:47"
 }
 
 # Extenal variables to be injected to lambda functions
@@ -67,19 +62,34 @@ module "test_events" {
 
   source = "../../"
 
+  # Set the name of the API Gateway where you want to attach the new resources
+  aws_api_gateway_rest_api_name = "test-api-gateway"
+
   service_name  = "test-events"
   description   = "This is the /test_events"
+
+  # The resource id below is not created by this module, you'll need to use something similar to:
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_resource
   resource_id   = "/api/test_events"
+
   http_method   = "GET"
   authorization = "NONE"
-  handler       = "src/test_event.handler"
+  handler       = "get_test_event.handler"
   runtime       = "python3.9"
   timeout       = 30
   memory_size   = 256
-  layers        = [var.python_aws_powertools, var.python_sentry_layer]
+  layers        = [var.python_aws_powertools]
   external_vars = var.external_vars
   environment   = var.environment
   common_tags   = local.common_tags
+
+  # Specify the Lambda code base directory
+  source_path = [
+    "${path.module}/src/get_test_event.py",
+    {
+      prefix_in_zip    = "${var.environment}-get-test-events"
+    }
+  ]
 
   request_parameters = {
     "method.request.path.proxy" = true

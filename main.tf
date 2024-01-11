@@ -66,16 +66,7 @@ module "main_lambda" {
   publish       = true
   timeout       = var.timeout
   memory_size   = var.memory_size
-
-  source_path = [
-    {
-      path = "${path.module}/../../../",
-      patterns = [
-        "!.*/*",
-        "src/.+",
-      ]
-    }
-  ]
+  source_path   = var.source_path
 
   vpc_subnet_ids         = data.aws_subnets.private.ids
   vpc_security_group_ids = [data.aws_security_group.main.id]
