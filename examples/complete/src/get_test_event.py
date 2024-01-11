@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Copyright 2023 The Littlebirdie Authors.
-"""Test Event."""
+"""Get Test Event."""
 
 import json
 
