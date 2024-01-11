@@ -1,13 +1,13 @@
 .ONESHELL:
 SHELL = /bin/bash
 
-default: help
-
 GREEN := $(shell tput setaf 2)
 YELLOW := $(shell tput setaf 3)
 WHITE := $(shell tput setaf 7)
 CYAN := $(shell tput setaf 6)
 BOLD :=$(shell tput bold)
+
+default: help
 
 help: ## Show this help.
 	@echo ''
