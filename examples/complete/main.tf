@@ -50,7 +50,7 @@ module "test_events_get" {
   source_path = [
     "${path.module}/src/get_test_event.py",
     {
-      prefix_in_zip    = "${var.environment}-get-test-events"
+      prefix_in_zip = "${var.environment}-get-test-events"
     }
   ]
 }
@@ -58,6 +58,9 @@ module "test_events_get" {
 module "test_events_post" {
 
   source = "../../"
+
+  # Set the name of the API Gateway where you want to attach the new resources
+  aws_api_gateway_rest_api_name = "uat-webapi"
 
   service_name  = "test-events-post"
   description   = "This is the /test_events"
@@ -77,7 +80,7 @@ module "test_events_post" {
   source_path = [
     "${path.module}/src/post_test_event.py",
     {
-      prefix_in_zip    = "${var.environment}-post-test-events"
+      prefix_in_zip = "${var.environment}-post-test-events"
     }
   ]
 }

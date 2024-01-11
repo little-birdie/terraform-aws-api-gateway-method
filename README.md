@@ -62,9 +62,15 @@ module "test_events" {
 
   source = "../../"
 
+  # Set the name of the API Gateway where you want to attach the new resources
+  aws_api_gateway_rest_api_name = "test-api-gateway"
+
   service_name  = "test-events"
   description   = "This is the /test_events"
+
+  # The resource id below is not created by this module, you'll need to use something similar to: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/api_gateway_resource
   resource_id   = "/api/test_events"
+
   http_method   = "GET"
   authorization = "NONE"
   handler       = "src/test_event.handler"

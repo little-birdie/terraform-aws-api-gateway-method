@@ -23,6 +23,12 @@ variable "service_name" {
   description = "The Lambda name"
 }
 
+variable "aws_api_gateway_rest_api_name" {
+  default     = null
+  type        = string
+  description = "An Optional aws api gateway to create the resources"
+}
+
 variable "description" {
   default     = null
   type        = string
