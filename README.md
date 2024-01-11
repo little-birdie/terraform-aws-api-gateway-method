@@ -14,7 +14,7 @@ Little Birdie's internal terraform module which creates an API Gateway method to
 ```hcl
 module "api-gateway-method" {
   source  = "little-birdie/api-gateway-method/aws"
-  version = "0.0.13"
+  version = "0.0.14"
 }
 ```
 
@@ -27,11 +27,6 @@ module "api-gateway-method" {
 variable "python_aws_powertools" {
   type    = string
   default = "arn:aws:lambda:ap-southeast-2:017000801446:layer:AWSLambdaPowertoolsPythonV2:18"
-}
-
-variable "python_sentry_layer" {
-  type    = string
-  default = "arn:aws:lambda:ap-southeast-2:943013980633:layer:SentryPythonServerlessSDK:47"
 }
 
 # Extenal variables to be injected to lambda functions
@@ -76,10 +71,18 @@ module "test_events" {
   runtime       = "python3.9"
   timeout       = 30
   memory_size   = 256
-  layers        = [var.python_aws_powertools, var.python_sentry_layer]
+  layers        = [var.python_aws_powertools]
   external_vars = var.external_vars
   environment   = var.environment
   common_tags   = local.common_tags
+
+  # Specify the Lambda code base directory
+  source_path = [
+    "${path.module}/src/get_test_event.py",
+    {
+      prefix_in_zip    = "${var.environment}-get-test-events"
+    }
+  ]
 
   request_parameters = {
     "method.request.path.proxy" = true
